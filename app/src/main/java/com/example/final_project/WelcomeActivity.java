@@ -11,8 +11,29 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class WelcomeActivity extends AppCompatActivity {
-    Button signupButton, loginButton;
+    Button signupWelcomeButton, loginWelcomeButton;
+    FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Check if the user is signed in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            // If the user is already logged in, navigate to MainActivity
+            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish(); // Close WelcomeActivity to prevent navigating back to it
+        }
+        // If not logged in, stay on the WelcomeActivity and wait for the user to log in
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,23 +41,25 @@ public class WelcomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_welcome);
 
-        signupButton = findViewById(R.id.signupButton);
-        loginButton = findViewById(R.id.loginButton);
+        mAuth = FirebaseAuth.getInstance();
 
-//        Signup Button onClick
-        signupButton.setOnClickListener(new View.OnClickListener() {
+        signupWelcomeButton = findViewById(R.id.signupWelcomeButton);
+        loginWelcomeButton = findViewById(R.id.loginWelcomeButton);
+
+        // Signup Button onClick
+        signupWelcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, SignupActivity.class);
                 startActivity(intent);
             }
         });
 
-//        Login Button onClick
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        // Login Button onClick
+        loginWelcomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
