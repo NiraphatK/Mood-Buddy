@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,10 +24,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class SignupActivity extends AppCompatActivity {
     EditText emailSignupEditText, usernameSignupEditText, passwordSignupEditText, confirmPasswordSignupEditText;
-    Button signupSignupButton;
+    Button signupSignupButton, backButtonSignUp;
     TextInputLayout emailSignupTextInputLayout, usernameSignupTextInputLayout, passwordSignupTextInputLayout, confirmPasswordSignupTextInputLayout;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -49,8 +49,17 @@ public class SignupActivity extends AppCompatActivity {
         signupSignupButton = findViewById(R.id.signupSignupButton);
         emailSignupTextInputLayout = findViewById(R.id.emailSignupTextInputLayout);
         usernameSignupTextInputLayout = findViewById(R.id.usernameSignupTextInputLayout);
-        passwordSignupTextInputLayout = findViewById(R.id.passwordLoginTextInputLayout);
+        passwordSignupTextInputLayout = findViewById(R.id.passwordSignupTextInputLayout);
         confirmPasswordSignupTextInputLayout = findViewById(R.id.confirmPasswordSignupTextInputLayout);
+        backButtonSignUp = findViewById(R.id.backButtonSignUp);
+
+        // Back Button
+        backButtonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Signup Button
         signupSignupButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +84,9 @@ public class SignupActivity extends AppCompatActivity {
                 if (email.isEmpty()) {
                     emailSignupTextInputLayout.setHelperText("Required*");
                     isValid = false;
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    emailSignupTextInputLayout.setHelperText("The email address is badly formatted.");
+                    isValid = false;
                 } else {
                     emailSignupTextInputLayout.setHelperText(" ");
                 }
@@ -90,6 +102,9 @@ public class SignupActivity extends AppCompatActivity {
                 // Password validation
                 if (password.isEmpty()) {
                     passwordSignupTextInputLayout.setHelperText("Required*");
+                    isValid = false;
+                } else if (password.length() < 6) {
+                    passwordSignupTextInputLayout.setHelperText("Password must be at least 6 characters.");
                     isValid = false;
                 } else {
                     passwordSignupTextInputLayout.setHelperText(" ");
@@ -155,15 +170,6 @@ public class SignupActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-                            }
-                        } else {
-                            String errorMsg = task.getException().getMessage();
-                            if (errorMsg.contains("email")) {
-                                emailSignupTextInputLayout.setHelperText(errorMsg);
-                                emailSignupTextInputLayout.setHelperTextEnabled(true);
-                            } else {
-                                passwordSignupTextInputLayout.setHelperText(errorMsg);
-                                passwordSignupTextInputLayout.setHelperTextEnabled(true);
                             }
                         }
                     }

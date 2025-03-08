@@ -1,6 +1,5 @@
 package com.example.final_project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPasswordActivity extends AppCompatActivity {
     TextInputLayout emailForgotPasswordTextInputLayout;
     EditText emailForgotPasswordEditText;
-    Button sendForgotPasswordButton;
+    Button sendForgotPasswordButton, backButtonForgotPassword;
     FirebaseAuth mAuth;
 
     @Override
@@ -35,6 +33,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         emailForgotPasswordTextInputLayout = findViewById(R.id.emailForgotPasswordTextInputLayout);
         emailForgotPasswordEditText = findViewById(R.id.emailForgotPasswordEditText);
         sendForgotPasswordButton = findViewById(R.id.sendForgotPasswordButton);
+        backButtonForgotPassword = findViewById(R.id.backButtonForgotPassword);
+
+        // Back Button
+        backButtonForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         sendForgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     EditText emailLoginEditText, passwordLoginEditText;
-    Button loginLoginButton;
+    Button loginLoginButton, backButtonLogin;
     TextInputLayout emailLoginTextInputLayout, passwordLoginTextInputLayout;
     TextView forgotPasswordTextView;
     FirebaseAuth mAuth;
@@ -37,12 +37,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        emailLoginEditText = findViewById(R.id.emailForgotPasswordEditText);
+        emailLoginEditText = findViewById(R.id.emailLoginEditText);
         passwordLoginEditText = findViewById(R.id.passwordLoginEditText);
         loginLoginButton = findViewById(R.id.loginLoginButton);
-        emailLoginTextInputLayout = findViewById(R.id.emailForgotPasswordTextInputLayout);
+        emailLoginTextInputLayout = findViewById(R.id.emailLoginTextInputLayout);
         passwordLoginTextInputLayout = findViewById(R.id.passwordLoginTextInputLayout);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
+        backButtonLogin = findViewById(R.id.backButtonLogin);
+
+        // Back Button
+        backButtonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Forgot Password
         forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
