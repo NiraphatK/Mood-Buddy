@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class UserClass {
     private String email, username;
-    private String petId;
     private long createdAt;
     private Map<String, MoodEntryClass> moodEntries;
 
@@ -16,7 +15,6 @@ public class UserClass {
     public UserClass(String email, String username) {
         this.email = email;
         this.username = username;
-        this.petId = "";
         this.createdAt = System.currentTimeMillis();
         this.moodEntries = new HashMap<>();
     }
@@ -37,13 +35,6 @@ public class UserClass {
         this.username = username;
     }
 
-    public String getPetId() {
-        return petId;
-    }
-
-    public void setPetId(String petId) {
-        this.petId = petId;
-    }
 
     public long getCreatedAt() {
         return createdAt;

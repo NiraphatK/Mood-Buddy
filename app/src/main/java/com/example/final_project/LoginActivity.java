@@ -45,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         backButtonLogin = findViewById(R.id.backButtonLogin);
 
+        emailLoginTextInputLayout.setHelperTextTextAppearance(R.style.HelperTextStyle);
+        passwordLoginTextInputLayout.setHelperTextTextAppearance(R.style.HelperTextStyle);
+
         // Back Button
         backButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

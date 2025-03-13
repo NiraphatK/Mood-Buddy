@@ -78,6 +78,11 @@ public class SignupActivity extends AppCompatActivity {
                 passwordSignupTextInputLayout.setHelperTextEnabled(false);
                 confirmPasswordSignupTextInputLayout.setHelperTextEnabled(false);
 
+                emailSignupTextInputLayout.setHelperTextTextAppearance(R.style.HelperTextStyle);
+                usernameSignupTextInputLayout.setHelperTextTextAppearance(R.style.HelperTextStyle);
+                passwordSignupTextInputLayout.setHelperTextTextAppearance(R.style.HelperTextStyle);
+                confirmPasswordSignupTextInputLayout.setHelperTextTextAppearance(R.style.HelperTextStyle);
+
                 boolean isValid = true;
 
                 // Email validation

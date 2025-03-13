@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Mood Buddy</string>
     <string name="forgot_password"><u>Forgot password?</u></string>
+    <string name="see_all"><u>See All</u></string>
 </resources>

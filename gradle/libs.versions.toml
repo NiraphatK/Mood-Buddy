@@ -1,5 +1,6 @@
 [versions]
 agp = "8.9.0"
+circleMenuVersion = "0.3.2"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -12,10 +13,13 @@ firebaseDatabase = "21.0.0"
 firebaseAuth = "23.2.0"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
+materialCalendarView = "1.9.2"
+materialVersion = "1.13.0-alpha11"
 navigationFragment = "2.8.8"
 navigationUi = "2.8.8"
 
 [libraries]
+circlemenu-circle-menu = { module = "com.ramotion.circlemenu:circle-menu", version.ref = "circleMenuVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -27,6 +31,8 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database",
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+material-calendar-view = { module = "com.applandeo:material-calendar-view", version.ref = "materialCalendarView" }
+material-v1130alpha11 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 
