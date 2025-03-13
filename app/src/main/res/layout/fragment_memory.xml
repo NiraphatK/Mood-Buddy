@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".MemoryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Memory" />
+        android:layout_height="685dp"
+        android:layout_marginVertical="50dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMemories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </FrameLayout>
