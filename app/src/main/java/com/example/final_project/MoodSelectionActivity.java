@@ -4,8 +4,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ public class MoodSelectionActivity extends AppCompatActivity {
     private String userId;
     private long selectedDateMillis;
     private TextView dateMoodSelectedTextView;
+    private ImageView closeIconMoodSelection;
 
     private String existingMood;
     private String existingNote;
@@ -58,11 +61,21 @@ public class MoodSelectionActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.saveButton);
         deleteButton = findViewById(R.id.deleteButton);
         dateMoodSelectedTextView = findViewById(R.id.dateMoodSelectedTextView);
+        closeIconMoodSelection = findViewById(R.id.closeIconMoodSelection);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         usersRef = database.getReference("users");
         userId = mAuth.getCurrentUser().getUid();
+
+
+        // close Icon
+        closeIconMoodSelection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         saveButton.setEnabled(false);
         setUpDateDisplay();

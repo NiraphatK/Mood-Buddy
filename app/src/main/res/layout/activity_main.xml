@@ -21,9 +21,12 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
 
-                app:menu="@menu/top_bar_menu" />
+                android:minHeight="?attr/actionBarSize"
+                android:pointerIcon="none"
+                app:menu="@menu/top_bar_menu"
+                app:navigationIcon="@drawable/logo_home" />
+
         </com.google.android.material.appbar.AppBarLayout>
 
 
