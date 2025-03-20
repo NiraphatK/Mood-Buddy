@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -18,8 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,7 +47,7 @@ public class MoodSelectionActivity extends AppCompatActivity {
     private DatabaseReference usersRef;
     private String userId;
     private long selectedDateMillis;
-    private TextView dateMoodSelectedTextView;
+    private TextView dateMoodSelectedTextView, nameTextView;
     private ImageView closeIconMoodSelection;
 
     private String existingMood;
@@ -61,6 +66,7 @@ public class MoodSelectionActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.saveButton);
         deleteButton = findViewById(R.id.deleteButton);
         dateMoodSelectedTextView = findViewById(R.id.dateMoodSelectedTextView);
+        nameTextView = findViewById(R.id.nameTextView);
         closeIconMoodSelection = findViewById(R.id.closeIconMoodSelection);
 
         mAuth = FirebaseAuth.getInstance();
@@ -78,6 +84,7 @@ public class MoodSelectionActivity extends AppCompatActivity {
         });
 
         saveButton.setEnabled(false);
+        usernameDisplay();
         setUpDateDisplay();
 
         checkIfMoodExists();
@@ -114,6 +121,21 @@ public class MoodSelectionActivity extends AppCompatActivity {
 
         saveButton.setOnClickListener(v -> saveMoodAndNote());
         deleteButton.setOnClickListener(v -> deleteMoodEntry());
+    }
+
+    private void usernameDisplay(){
+        usersRef.child(userId).child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String username = snapshot.getValue(String.class);
+                nameTextView.setText(username);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void setUpDateDisplay() {
